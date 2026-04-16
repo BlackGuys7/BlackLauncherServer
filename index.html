@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlackLauncher</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #1b2838;
+      color: #c7d5e0;
+    }
+
+    nav {
+      background: #171a21;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #2a3f5f;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a9fff;
+    }
+
+    .nav-links a {
+      color: #c7d5e0;
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: #1a9fff; }
+
+    .hero {
+      text-align: center;
+      padding: 100px 40px;
+      background: #1b2838;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span { color: #1a9fff; }
+
+    .hero p {
+      font-size: 18px;
+      color: #8f98a0;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-download {
+      background: #1a9fff;
+      color: white;
+      padding: 16px 48px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .btn-download:hover { background: #2aafff; }
+
+    .btn-secondary {
+      background: transparent;
+      color: #c7d5e0;
+      padding: 16px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 16px;
+      border: 1px solid #2a3f5f;
+      display: inline-block;
+      margin-left: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: #1a9fff; color: #1a9fff; }
+
+    .screenshots {
+      padding: 80px 40px;
+      background: #171a21;
+      text-align: center;
+    }
+
+    .screenshots h2 {
+      font-size: 32px;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .screenshot-card {
+      background: #1e2837;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #2a3f5f;
+    }
+
+    .screenshot-placeholder {
+      height: 180px;
+      background: #2a3f5f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8f98a0;
+      font-size: 14px;
+    }
+
+    .screenshot-card p {
+      padding: 12px;
+      font-size: 13px;
+      color: #8f98a0;
+    }
+
+    .features {
+      padding: 80px 40px;
+      background: #1b2838;
+    }
+
+    .features h2 {
+      font-size: 32px;
+      color: white;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: #1e2837;
+      border-radius: 8px;
+      padding: 28px;
+      border: 1px solid #2a3f5f;
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      color: white;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: #8f98a0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .auth-section {
+      padding: 80px 40px;
+      background: #171a21;
+      text-align: center;
+    }
+
+    .auth-section h2 {
+      font-size: 32px;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .auth-container {
+      display: flex;
+      gap: 24px;
+      max-width: 700px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .auth-box {
+      background: #1e2837;
+      border-radius: 8px;
+      padding: 32px;
+      border: 1px solid #2a3f5f;
+      flex: 1;
+      max-width: 320px;
+    }
+
+    .auth-box h3 {
+      color: white;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .auth-box input {
+      width: 100%;
+      background: #2a3f5f;
+      border: 1px solid #3a5f8f;
+      border-radius: 4px;
+      padding: 10px 12px;
+      color: white;
+      font-size: 14px;
+      margin-bottom: 12px;
+      outline: none;
+    }
+
+    .auth-box input:focus { border-color: #1a9fff; }
+
+    .auth-box button {
+      width: 100%;
+      background: #1a9fff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 12px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    .auth-box button:hover { background: #2aafff; }
+
+    .error-msg {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .success-msg {
+      color: #4caf50;
+      font-size: 12px;
+      margin-top: 8px;
+      display: none;
+    }
+
+    footer {
+      background: #171a21;
+      border-top: 1px solid #2a3f5f;
+      padding: 32px 40px;
+      text-align: center;
+      color: #8f98a0;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">BlackLauncher</div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#auth">Login</a>
+      <a href="#download" class="btn-download" style="padding:8px 20px;font-size:14px;">Download</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Dein <span>Gaming</span> Launcher</h1>
+    <p>Alle deine Spiele an einem Ort. Kostenlos, schnell und einfach zu bedienen.</p>
+    <a href="#download" class="btn-download" id="download">Download für Mac</a>
+    <a href="#features" class="btn-secondary">Mehr erfahren</a>
+    <p style="margin-top:16px;font-size:13px;color:#8f98a0;">Kostenlos · macOS 12+ · Apple Silicon & Intel</p>
+  </section>
+
+  <section class="screenshots" id="screenshots">
+    <h2>Screenshots</h2>
+    <div class="screenshot-grid">
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">Bibliothek Screenshot</div>
+        <p>Deine Spielebibliothek auf einen Blick</p>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">Store Screenshot</div>
+        <p>Gratis Spiele im Store entdecken</p>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">Login Screenshot</div>
+        <p>Einfacher Login und Registrierung</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <h2>Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <h3>Spielbibliothek</h3>
+        <p>Alle deine Spiele übersichtlich verwalten und mit einem Klick starten.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛒</div>
+        <h3>Gratis Store</h3>
+        <p>Entdecke und downloade kostenlose Spiele direkt im Launcher.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>Auto-Updates</h3>
+        <p>Spiele automatisch aktuell halten ohne manuellen Aufwand.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👤</div>
+        <h3>Accounts</h3>
+        <p>Registriere dich kostenlos und greife von überall auf deine Bibliothek zu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="auth-section" id="auth">
+    <h2>Konto erstellen oder anmelden</h2>
+    <div class="auth-container">
+      <div class="auth-box">
+        <h3>Anmelden</h3>
+        <input type="text" id="login-username" placeholder="Benutzername">
+        <input type="password" id="login-password" placeholder="Passwort">
+        <button onclick="login()">Anmelden</button>
+        <div class="error-msg" id="login-error">Falscher Benutzername oder Passwort.</div>
+        <div class="success-msg" id="login-success">Erfolgreich angemeldet!</div>
+      </div>
+      <div class="auth-box">
+        <h3>Registrieren</h3>
+        <input type="text" id="reg-username" placeholder="Benutzername">
+        <input type="email" id="reg-email" placeholder="E-Mail">
+        <input type="password" id="reg-password" placeholder="Passwort">
+        <button onclick="register()">Konto erstellen</button>
+        <div class="error-msg" id="reg-error">Registrierung fehlgeschlagen.</div>
+        <div class="success-msg" id="reg-success">Konto erstellt! Du kannst dich jetzt anmelden.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 BlackLauncher · Alle Rechte vorbehalten</p>
+  </footer>
+
+  <script>
+    function login() {
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      const error = document.getElementById('login-error');
+      const success = document.getElementById('login-success');
+
+      if (!username || !password) {
+        error.textContent = 'Bitte alle Felder ausfüllen.';
+        error.style.display = 'block';
+        success.style.display = 'none';
+        return;
+      }
+
+      error.style.display = 'none';
+      success.style.display = 'block';
+    }
+
+    function register() {
+      const username = document.getElementById('reg-username').value;
+      const email = document.getElementById('reg-email').value;
+      const password = document.getElementById('reg-password').value;
+      const error = document.getElementById('reg-error');
+      const success = document.getElementById('reg-success');
+
+      if (!username || !email || !password) {
+        error.textContent = 'Bitte alle Felder ausfüllen.';
+        error.style.display = 'block';
+        success.style.display = 'none';
+        return;
+      }
+
+      error.style.display = 'none';
+      success.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
