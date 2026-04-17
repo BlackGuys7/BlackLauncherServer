@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BlackLauncher</title>
+  <title>BlackLauncher - Dein Gaming Hub</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -11,6 +11,7 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: #1b2838;
       color: #c7d5e0;
+      scroll-behavior: smooth;
     }
 
     nav {
@@ -20,6 +21,9 @@
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid #2a3f5f;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .logo {
@@ -40,7 +44,7 @@
     .hero {
       text-align: center;
       padding: 100px 40px;
-      background: #1b2838;
+      background: radial-gradient(circle at top, #2a3f5f 0%, #1b2838 70%);
     }
 
     .hero h1 {
@@ -71,6 +75,8 @@
       font-weight: 600;
       display: inline-block;
       transition: background 0.2s;
+      border: none;
+      cursor: pointer;
     }
 
     .btn-download:hover { background: #2aafff; }
@@ -96,12 +102,6 @@
       text-align: center;
     }
 
-    .screenshots h2 {
-      font-size: 32px;
-      color: white;
-      margin-bottom: 40px;
-    }
-
     .screenshot-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -124,57 +124,6 @@
       align-items: center;
       justify-content: center;
       color: #8f98a0;
-      font-size: 14px;
-    }
-
-    .screenshot-card p {
-      padding: 12px;
-      font-size: 13px;
-      color: #8f98a0;
-    }
-
-    .features {
-      padding: 80px 40px;
-      background: #1b2838;
-    }
-
-    .features h2 {
-      font-size: 32px;
-      color: white;
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .feature-card {
-      background: #1e2837;
-      border-radius: 8px;
-      padding: 28px;
-      border: 1px solid #2a3f5f;
-    }
-
-    .feature-icon {
-      font-size: 32px;
-      margin-bottom: 16px;
-    }
-
-    .feature-card h3 {
-      color: white;
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    .feature-card p {
-      color: #8f98a0;
-      font-size: 14px;
-      line-height: 1.6;
     }
 
     .auth-section {
@@ -183,18 +132,13 @@
       text-align: center;
     }
 
-    .auth-section h2 {
-      font-size: 32px;
-      color: white;
-      margin-bottom: 40px;
-    }
-
     .auth-container {
       display: flex;
       gap: 24px;
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
       justify-content: center;
+      flex-wrap: wrap;
     }
 
     .auth-box {
@@ -203,12 +147,12 @@
       padding: 32px;
       border: 1px solid #2a3f5f;
       flex: 1;
-      max-width: 320px;
+      min-width: 300px;
+      max-width: 380px;
     }
 
     .auth-box h3 {
       color: white;
-      font-size: 20px;
       margin-bottom: 20px;
     }
 
@@ -217,9 +161,8 @@
       background: #2a3f5f;
       border: 1px solid #3a5f8f;
       border-radius: 4px;
-      padding: 10px 12px;
+      padding: 12px;
       color: white;
-      font-size: 14px;
       margin-bottom: 12px;
       outline: none;
     }
@@ -233,34 +176,19 @@
       border: none;
       border-radius: 4px;
       padding: 12px;
-      font-size: 15px;
       cursor: pointer;
-      margin-top: 4px;
+      font-weight: 600;
     }
 
-    .auth-box button:hover { background: #2aafff; }
-
-    .error-msg {
-      color: #e74c3c;
-      font-size: 12px;
-      margin-top: 8px;
-      display: none;
-    }
-
-    .success-msg {
-      color: #4caf50;
-      font-size: 12px;
-      margin-top: 8px;
-      display: none;
-    }
+    .error-msg { color: #e74c3c; font-size: 13px; margin-top: 10px; display: none; }
+    .success-msg { color: #2ecc71; font-size: 13px; margin-top: 10px; display: none; }
 
     footer {
       background: #171a21;
-      border-top: 1px solid #2a3f5f;
-      padding: 32px 40px;
+      padding: 40px;
       text-align: center;
       color: #8f98a0;
-      font-size: 13px;
+      border-top: 1px solid #2a3f5f;
     }
   </style>
 </head>
@@ -270,127 +198,120 @@
     <div class="logo">BlackLauncher</div>
     <div class="nav-links">
       <a href="#features">Features</a>
-      <a href="#screenshots">Screenshots</a>
-      <a href="#auth">Login</a>
-      <a href="#download" class="btn-download" style="padding:8px 20px;font-size:14px;">Download</a>
+      <a href="#auth">Account</a>
+      <a href="#" class="btn-download" style="padding:8px 20px; font-size:14px;">Download</a>
     </div>
   </nav>
 
   <section class="hero">
     <h1>Dein <span>Gaming</span> Launcher</h1>
-    <p>Alle deine Spiele an einem Ort. Kostenlos, schnell und einfach zu bedienen.</p>
-    <a href="#download" class="btn-download" id="download">Download für Mac</a>
-    <a href="#features" class="btn-secondary">Mehr erfahren</a>
-    <p style="margin-top:16px;font-size:13px;color:#8f98a0;">Kostenlos · macOS 12+ · Apple Silicon & Intel</p>
-  </section>
-
-  <section class="screenshots" id="screenshots">
-    <h2>Screenshots</h2>
-    <div class="screenshot-grid">
-      <div class="screenshot-card">
-        <div class="screenshot-placeholder">Bibliothek Screenshot</div>
-        <p>Deine Spielebibliothek auf einen Blick</p>
-      </div>
-      <div class="screenshot-card">
-        <div class="screenshot-placeholder">Store Screenshot</div>
-        <p>Gratis Spiele im Store entdecken</p>
-      </div>
-      <div class="screenshot-card">
-        <div class="screenshot-placeholder">Login Screenshot</div>
-        <p>Einfacher Login und Registrierung</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="features" id="features">
-    <h2>Features</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🎮</div>
-        <h3>Spielbibliothek</h3>
-        <p>Alle deine Spiele übersichtlich verwalten und mit einem Klick starten.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🛒</div>
-        <h3>Gratis Store</h3>
-        <p>Entdecke und downloade kostenlose Spiele direkt im Launcher.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔄</div>
-        <h3>Auto-Updates</h3>
-        <p>Spiele automatisch aktuell halten ohne manuellen Aufwand.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">👤</div>
-        <h3>Accounts</h3>
-        <p>Registriere dich kostenlos und greife von überall auf deine Bibliothek zu.</p>
-      </div>
-    </div>
+    <p>Verwalte deine Bibliothek, entdecke neue Spiele und verbinde dich mit Freunden.</p>
+    <a href="#" class="btn-download">Download für Windows/Mac</a>
   </section>
 
   <section class="auth-section" id="auth">
-    <h2>Konto erstellen oder anmelden</h2>
+    <h2>Einstieg in den BlackLauncher</h2>
+    <p style="margin-bottom: 40px; color: #8f98a0;">Melde dich an, um deine Spiele zu synchronisieren.</p>
+    
     <div class="auth-container">
+      <!-- LOGIN BOX -->
       <div class="auth-box">
         <h3>Anmelden</h3>
         <input type="text" id="login-username" placeholder="Benutzername">
         <input type="password" id="login-password" placeholder="Passwort">
         <button onclick="login()">Anmelden</button>
-        <div class="error-msg" id="login-error">Falscher Benutzername oder Passwort.</div>
-        <div class="success-msg" id="login-success">Erfolgreich angemeldet!</div>
+        <div id="login-error" class="error-msg"></div>
+        <div id="login-success" class="success-msg">Erfolgreich angemeldet!</div>
       </div>
+
+      <!-- REGISTER BOX -->
       <div class="auth-box">
         <h3>Registrieren</h3>
         <input type="text" id="reg-username" placeholder="Benutzername">
-        <input type="email" id="reg-email" placeholder="E-Mail">
+        <input type="email" id="reg-email" placeholder="E-Mail Adresse">
         <input type="password" id="reg-password" placeholder="Passwort">
         <button onclick="register()">Konto erstellen</button>
-        <div class="error-msg" id="reg-error">Registrierung fehlgeschlagen.</div>
-        <div class="success-msg" id="reg-success">Konto erstellt! Du kannst dich jetzt anmelden.</div>
+        <div id="reg-error" class="error-msg"></div>
+        <div id="reg-success" class="success-msg">Konto erfolgreich erstellt!</div>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 BlackLauncher · Alle Rechte vorbehalten</p>
+    &copy; 2025 BlackLauncher Project. Alle Rechte vorbehalten.
   </footer>
 
   <script>
-    function login() {
-      const username = document.getElementById('login-username').value;
-      const password = document.getElementById('login-password').value;
-      const error = document.getElementById('login-error');
-      const success = document.getElementById('login-success');
+    // --- KONFIGURATION ---
+    // ERSETZE DIESE URL DURCH DEINE ECHTE RAILWAY URL!
+    const API_BASE_URL = 'DEINE_RAILWAY_URL_HIER'; 
 
-      if (!username || !password) {
-        error.textContent = 'Bitte alle Felder ausfüllen.';
-        error.style.display = 'block';
-        success.style.display = 'none';
-        return;
-      }
-
-      error.style.display = 'none';
-      success.style.display = 'block';
-    }
-
-    function register() {
+    // REGISTRIEREN FUNKTION
+    async function register() {
       const username = document.getElementById('reg-username').value;
       const email = document.getElementById('reg-email').value;
       const password = document.getElementById('reg-password').value;
-      const error = document.getElementById('reg-error');
-      const success = document.getElementById('reg-success');
+      const errorDiv = document.getElementById('reg-error');
+      const successDiv = document.getElementById('reg-success');
 
-      if (!username || !email || !password) {
-        error.textContent = 'Bitte alle Felder ausfüllen.';
-        error.style.display = 'block';
-        success.style.display = 'none';
-        return;
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          successDiv.style.display = 'block';
+          errorDiv.style.display = 'none';
+          // Felder leeren
+          document.getElementById('reg-username').value = '';
+          document.getElementById('reg-email').value = '';
+          document.getElementById('reg-password').value = '';
+        } else {
+          errorDiv.innerText = data.error || 'Fehler bei der Registrierung';
+          errorDiv.style.display = 'block';
+          successDiv.style.display = 'none';
+        }
+      } catch (err) {
+        errorDiv.innerText = 'Server nicht erreichbar';
+        errorDiv.style.display = 'block';
       }
+    }
 
-      error.style.display = 'none';
-      success.style.display = 'block';
+    // LOGIN FUNKTION
+    async function login() {
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      const errorDiv = document.getElementById('login-error');
+      const successDiv = document.getElementById('login-success');
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          successDiv.innerText = `Willkommen zurück, ${data.username}!`;
+          successDiv.style.display = 'block';
+          errorDiv.style.display = 'none';
+          localStorage.setItem('token', data.token); // Token für später speichern
+        } else {
+          errorDiv.innerText = data.error || 'Login fehlgeschlagen';
+          errorDiv.style.display = 'block';
+          successDiv.style.display = 'none';
+        }
+      } catch (err) {
+        errorDiv.innerText = 'Server nicht erreichbar';
+        errorDiv.style.display = 'block';
+      }
     }
   </script>
-
 </body>
 </html>
