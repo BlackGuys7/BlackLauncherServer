@@ -5,15 +5,25 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 
 const app = express();
+
+// --- KONFIGURATION ---
+// Railway weist den Port automatisch zu, lokal wird 3000 genutzt
+const PORT = process.env.PORT || 3000;
+// Das Secret kommt aus den Railway-Variablen oder ist lokal 'dev_secret'
+const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_key_123';
+// Die MongoDB URL von Railway oder lokal
+const MONGO_URI = process.env.MONGO_URL || 'mongodb://localhost:27017/blacklauncher';
+
+// --- MIDDLEWARE ---
 app.use(express.json());
-app.use(cors());
+app.use(cors()); // Erlaubt Anfragen von Webseite & Launcher
 
-const JWT_SECRET = 'blacklauncher_secret_key_2025';
+// --- MONGODB VERBINDUNG ---
+mongoose.connect(MONGO_URI)
+    .then(() => console.log('✅ MongoDB verbunden'))
+    .catch(err => console.error('❌ MongoDB Fehler:', err));
 
-// MongoDB verbinden
-mongoose.connect('mongodb://localhost:27017/blacklauncher');
-
-// User Schema
+// --- USER SCHEMA ---
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
@@ -23,6 +33,13 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
+
+// --- ROUTES ---
+
+// Startseite (damit "Cannot GET /" verschwindet)
+app.get('/', (req, res) => {
+    res.send('BlackLauncher API läuft online!');
+});
 
 // REGISTER
 app.post('/api/register', async (req, res) => {
@@ -43,7 +60,8 @@ app.post('/api/register', async (req, res) => {
         const token = jwt.sign({ id: user._id, username }, JWT_SECRET);
         res.json({ token, username });
     } catch (err) {
-        res.status(500).json({ error: 'Serverfehler' });
+        console.error(err);
+        res.status(500).json({ error: 'Serverfehler bei Registrierung' });
     }
 });
 
@@ -63,7 +81,8 @@ app.post('/api/login', async (req, res) => {
         const token = jwt.sign({ id: user._id, username }, JWT_SECRET);
         res.json({ token, username, email: user.email });
     } catch (err) {
-        res.status(500).json({ error: 'Serverfehler' });
+        console.error(err);
+        res.status(500).json({ error: 'Serverfehler beim Login' });
     }
 });
 
@@ -84,4 +103,8 @@ app.get('/api/validate', async (req, res) => {
     }
 });
 
-app.listen(3000, () => console.log('Server läuft auf http://localhost:3000'));
+// --- SERVER START ---
+// Wichtig: '0.0.0.0' ist nötig für Railway Networking
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Server aktiv auf Port ${PORT}`);
+});
